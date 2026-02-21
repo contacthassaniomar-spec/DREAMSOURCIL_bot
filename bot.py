@@ -227,7 +227,7 @@ async def callbacks(update: Update, context: ContextTypes.DEFAULT_TYPE):
         await q.edit_message_text(ADDRESS_TEXT, reply_markup=main_menu())
 
     elif data in ("halal", "halalbrow"):
-    await q.edit_message_text(HALAL_BROW_INFO, reply_markup=main_menu())
+        await q.edit_message_text(HALAL_BROW_INFO, reply_markup=main_menu())
 # ===== COMMANDES (pour que le Menu Telegram fonctionne) =====
 
 async def cmd_rdv(update: Update, context: ContextTypes.DEFAULT_TYPE):
