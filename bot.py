@@ -156,7 +156,7 @@ async def callbacks(update: Update, context: ContextTypes.DEFAULT_TYPE):
     elif data == "tarifs":
         text = "💰 Tarifs :\n"
         for s in SERVICES_BROWS + SERVICES_LASHES:
-        text += f"- {s['name']} : {s['price']} ({s['duration']} min)\n"
+            text += f"- {s['name']} : {s['price']} ({s['duration']} min)\n"
         await q.edit_message_text(text, reply_markup=main_menu())
 
 
