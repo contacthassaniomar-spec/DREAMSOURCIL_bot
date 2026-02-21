@@ -161,10 +161,10 @@ async def callbacks(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 
     elif data == "adresse":
-    await q.edit_message_text(ADDRESS_TEXT, reply_markup=main_menu())
+        await q.edit_message_text(ADDRESS_TEXT, reply_markup=main_menu())
 
     elif data == "halal":
-    await q.edit_message_text(HALAL_BROW_INFO, reply_markup=main_menu())
+        await q.edit_message_text(HALAL_BROW_INFO, reply_markup=main_menu())
     
     elif data == "categories":
         await q.edit_message_text("Choisis une catégorie 👇", reply_markup=categories_menu())
