@@ -152,7 +152,18 @@ async def callbacks(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     elif data == "rdv":
         await q.edit_message_text("Choisis une catégorie 👇", reply_markup=categories_menu())
+        
+elif data == "tarifs":
+    text = "💶 Tarifs :\n"
+    for s in SERVICES_BROWS + SERVICES_LASHES:
+        text += f"- {s['name']} : {s['price']} ({s['duration']} min)\n"
+    await q.edit_message_text(text, reply_markup=main_menu())
 
+elif data == "adresse":
+    await q.edit_message_text(ADDRESS_TEXT, reply_markup=main_menu())
+
+elif data == "halal":
+    await q.edit_message_text(HALAL_BROW_INFO, reply_markup=main_menu())
     elif data == "categories":
         await q.edit_message_text("Choisis une catégorie 👇", reply_markup=categories_menu())
 
@@ -219,14 +230,37 @@ async def callbacks(update: Update, context: ContextTypes.DEFAULT_TYPE):
     elif data == "adresse":
         await q.edit_message_text(ADDRESS_TEXT, reply_markup=main_menu())
 
-    elif data == "halal":
-        await q.edit_message_text(HALAL_BROW_INFO, reply_markup=main_menu())
+    elif data in ("halal", "halalbrow"):
+    await q.edit_message_text(HALAL_BROW_INFO, reply_markup=main_menu())
+# ===== COMMANDES (pour que le Menu Telegram fonctionne) =====
 
+async def cmd_rdv(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    await update.message.reply_text("📅 Prendre un rendez-vous 👇", reply_markup=categories_menu())
+
+async def cmd_tarifs(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    text = "💶 Tarifs :\n"
+    for s in SERVICES_BROWS + SERVICES_LASHES:
+        text += f"- {s['name']} : {s['price']} ({s['duration']} min)\n"
+    await update.message.reply_text(text, reply_markup=main_menu())
+
+async def cmd_adresse(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    await update.message.reply_text(ADDRESS_TEXT, reply_markup=main_menu())
+
+async def cmd_halalbrow(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    await update.message.reply_text(HALAL_BROW_INFO, reply_markup=main_menu())
 def run():
     app = Application.builder().token(TOKEN).build()
+
     app.add_handler(CommandHandler("start", start))
+    app.add_handler(CommandHandler("rdv", cmd_rdv))
+    app.add_handler(CommandHandler("tarifs", cmd_tarifs))
+    app.add_handler(CommandHandler("adresse", cmd_adresse))
+    app.add_handler(CommandHandler("halalbrow", cmd_halalbrow))
+
     app.add_handler(CallbackQueryHandler(callbacks, pattern=".*"))
+
     app.run_polling()
+   
 
 if __name__ == "__main__":
     run()
