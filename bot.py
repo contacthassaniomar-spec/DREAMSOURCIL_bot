@@ -153,17 +153,17 @@ async def callbacks(update: Update, context: ContextTypes.DEFAULT_TYPE):
     elif data == "rdv":
         await q.edit_message_text("Choisis une catégorie 👇", reply_markup=categories_menu())
         
-elif data == "tarifs":
+    elif data == "tarifs":
     text = "💰 Tarifs :\n"
     for s in SERVICES_BROWS + SERVICES_LASHES:
         text += f"- {s['name']} : {s['price']} ({s['duration']} min)\n"
     await q.edit_message_text(text, reply_markup=main_menu())
 
 
-elif data == "adresse":
+    elif data == "adresse":
     await q.edit_message_text(ADDRESS_TEXT, reply_markup=main_menu())
 
-elif data == "halal":
+    elif data == "halal":
     await q.edit_message_text(HALAL_BROW_INFO, reply_markup=main_menu())
     elif data == "categories":
         await q.edit_message_text("Choisis une catégorie 👇", reply_markup=categories_menu())
