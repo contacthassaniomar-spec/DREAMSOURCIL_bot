@@ -85,6 +85,7 @@ def slot_available(date_str, time_str, duration):
 def main_menu():
     return InlineKeyboardMarkup([
         [InlineKeyboardButton("📅 Prendre RDV", callback_data="rdv")],
+        [InlineKeyboardButton("💳 Payer un acompte", callback_data="paiement")],
         [InlineKeyboardButton("💶 Tarifs", callback_data="tarifs")],
         [InlineKeyboardButton("📍 Adresse", callback_data="adresse")],
         [InlineKeyboardButton("🤍 Infos Halal Brow", callback_data="halal")],
